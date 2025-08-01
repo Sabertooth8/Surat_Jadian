@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jawabanmu...</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('/assets/Blue.jpeg'); /* Ganti ke gambar lo */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .heart {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  color: #3399ff; /* biru */
+  animation: fall linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
+
+
+    .container {
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="mainContainer">
+    <h1>Kita udah HTS-an lama... Mau nggak jadi pacarku?</h1>
+    <div class="btn-group">
+      <button id="yesBtn">Iyaaa 😳</button>
+      <button id="noBtn">Enggak 😢</button>
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const container = document.getElementById("mainContainer");
+
+    noBtn.addEventListener("click", () => {
+      // Ubah style noBtn agar bisa keluar dari container
+      noBtn.style.position = "fixed";
+      noBtn.style.zIndex = "999";
+
+      // Kasih posisi acak di layar
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+      noBtn.style.left = `${randX}px`;
+      noBtn.style.top = `${randY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+  window.location.href = "ending.html";
+});
+
+  </script>
+
+  <script>
+  function spawnHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '💙';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  setInterval(spawnHeart, 200);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kita Jadian 😭💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('/assets/Blue.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .heart {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  color: #3399ff; /* biru */
+  animation: fall linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
+
+
+    .container {
+      background: white;
+      padding: 2rem 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container h1 {
+      font-size: 2rem;
+      color: #d63384;
+      margin-bottom: 0.8rem;
+    }
+
+    .container p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 2rem;
+    }
+
+    .wa-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .wa-btn:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+      .container h1 {
+        font-size: 1.7rem;
+      }
+
+      .container p {
+        font-size: 1rem;
+      }
+
+      .wa-btn {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>YEEAYY!! KITA JADIAN 🥹💕</h1>
+    <p>Makasih udah nerima aku... Sekarang waktunya pulang ke tempat ternyaman — yaitu chat kita 😗</p>
+    <a class="wa-btn" href="https://wa.me/621288352463?text=Aku%20udah%20baca%20semuanya...%20dan%20jawabanku%20adalah%20iya%20🥰" target="_blank">
+      Pulang ke WhatsApp 💌
+    </a>
+  </div>
+
+  <script>
+  function spawnHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = '💙';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  setInterval(spawnHeart, 200);
+</script>
+
+
+</body>
+</html>
