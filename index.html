@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Untuk Seseorang yang Spesial</title>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <link rel="stylesheet" href="style.css">
   <style>
     * {
       box-sizing: border-box;
@@ -21,37 +23,35 @@
     }
 
     .heart {
-  position: fixed;
-  top: -50px;
-  font-size: 20px;
-  color: #3399ff; /* biru */
-  animation: fall linear infinite;
-  pointer-events: none;
-  z-index: 9999;
-}
+      position: fixed;
+      top: -50px;
+      font-size: 20px;
+      color: #3399ff;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-@keyframes fall {
-  to {
-    transform: translateY(120vh);
-    opacity: 0;
-  }
-}
-
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
+    }
 
     .container {
-  background: #ffffff; /* Warna putih solid */
-  border: 2px solid #e0e0e0;
-  border-radius: 16px;
-  padding: 40px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  color: #333333; /* Warna teks jadi gelap biar kontras */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 1.5s ease forwards;
-  opacity: 0;
-}
-
+      background: #ffffff;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1.5s ease forwards;
+      opacity: 0;
+    }
 
     @keyframes fadeIn {
       to {
@@ -76,82 +76,124 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
       background: #ffe0f0;
     }
 
-   input[type="password"] {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-  color: #333;
-  background-color: #f9f9f9;
-}
+    input {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
 
-input::placeholder {
-  color: #999;
-}
+    .pw-wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 10px;
+    }
 
-#message {
-  margin-top: 15px;
-  font-size: 0.9rem;
-  color: #bb377d;
-}
+    #passwordInput {
+      width: 100%;
+      height: 44px;
+      padding: 0 44px 0 14px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      background-color: #f9f9f9;
+      color: #333;
+      box-sizing: border-box;
+      text-align: center;
+    }
 
+    #passwordInput:focus {
+      outline: none;
+      border: 1px solid #bb377d;
+    }
+
+    #passwordInput::placeholder {
+      color: #999;
+    }
+
+    #togglePw {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    #pwIcon {
+      font-size: 20px;
+      color: #bb377d;
+      opacity: 0.7;
+    }
+
+    #togglePw:hover #pwIcon {
+      opacity: 1;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #bb377d;
+    }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h1>Halo, Kamu 🫶</h1>
-    <p>Aku nyiapin sesuatu yang cuma kamu yang bisa lihat.<br> Tapi butuh password rahasia dulu ya... 😗</p>
-
-    <input type="password" id="passwordInput" placeholder="<3chieza" />
-    <br>
+    <h1>Halo, Cherinn 🫶</h1>
+    <p>Aku nyiapin sesuatu yang cuman kamu yang bisa lihat. Tapi butuh password rahasia dulu ya... 😗</p>
+    
+    <div class="pw-wrapper">
+      <input type="password" id="passwordInput" placeholder="Isi PW Yang Aku Kasih Yaa">
+      <span id="togglePw" onclick="togglePassword()">
+        <span id="pwIcon" class="iconify" data-icon="mdi:eye-outline"></span>
+      </span>
+    </div>
+    
     <button onclick="checkPassword()">Buka Suratnya 💌</button>
-
     <div id="message"></div>
   </div>
 
   <script>
     function checkPassword() {
-      const password = document.getElementById("passwordInput").value.toLowerCase();
-      const correctPassword = "<3chieza"; // Ganti sama clue manja kamu bro
-
+      const password = document.getElementById("passwordInput").value.trim().toLowerCase();
+      const correctPassword = "too cherin <3";
+      
       if (password === correctPassword) {
         window.location.href = "surat.html";
       } else {
         document.getElementById("message").innerText = "Upss... itu bukan password-nya 🥺";
       }
     }
+
+    function togglePassword() {
+      const input = document.getElementById("passwordInput");
+      const icon = document.getElementById("pwIcon");
+      
+      if (input.type === "password") {
+        input.type = "text";
+        icon.setAttribute("data-icon", "mdi:eye-off-outline");
+      } else {
+        input.type = "password";
+        icon.setAttribute("data-icon", "mdi:eye-outline");
+      }
+    }
+
+    function spawnHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💙';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(spawnHeart, 200);
   </script>
-
-  <script>
-  function spawnHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.textContent = '💙';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 5000);
-  }
-
-  setInterval(spawnHeart, 200);
-</script>
-
-
 </body>
 </html>
